@@ -297,7 +297,7 @@
     }
 
     .hero-panel {
-      flex: 1;
+      flex: 1 0 33.333%;   /* equal thirds so diagonal cuts are symmetrical */
       position: relative;
       overflow: hidden;
     }
@@ -308,19 +308,57 @@
        or online URLs. The current ones are high-quality Unsplash images.
     ===== */
     .hero-panel:nth-child(1) {
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200') center/cover no-repeat;
     }
     .hero-panel:nth-child(2) {
-      background: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200') center/cover no-repeat;
     }
     .hero-panel:nth-child(3) {
-      background: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200') center/cover no-repeat;
     }
 
-    /* Diagonal clip for middle overlap effect */
-    .hero-panel:nth-child(1) { clip-path: polygon(0 0, 108% 0, 95% 100%, 0 100%); margin-right: -5%; }
-    .hero-panel:nth-child(2) { clip-path: polygon(5% 0, 105% 0, 92% 100%, 0 100%); margin-right: -5%; z-index: 1; }
-    .hero-panel:nth-child(3) { clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%); z-index: 2; }
+    /* ── Flyer-style triangular panels ──
+         Panel 1: left rectangle with diagonal right edge converging to bottom-center
+         Panel 2: pure downward-pointing TRIANGLE (wide top, pointed bottom)
+         Panel 3: right rectangle with diagonal left edge from bottom-center
+         All three panels are position:absolute and fill the full hero height.
+    ── */
+
+    /* Override flex layout — use absolute positioning for precise overlap */
+    .hero-panels {
+      position: absolute;
+      inset: 0;
+      display: block;   /* override flex */
+    }
+
+    .hero-panel {
+      position: absolute !important;
+      top: 0;
+      height: 100%;
+    }
+
+    /* Panel 1 — left section: 0→50% wide, diagonal right edge to bottom-center */
+    .hero-panel:nth-child(1) {
+      left: 0;
+      width: 60%;
+      clip-path: polygon(0 0, 55% 0, 83% 100%, 0 100%);
+      z-index: 1;
+    }
+    /* Panel 2 — center TRIANGLE: spans full width, pointed at bottom-center */
+    .hero-panel:nth-child(2) {
+      left: 0;
+      width: 100%;
+      clip-path: polygon(28% 0, 72% 0, 50% 100%);
+      z-index: 2;
+    }
+    /* Panel 3 — right section: 50→100% wide, diagonal left edge from bottom-center */
+    .hero-panel:nth-child(3) {
+      right: 0;
+      left: auto;
+      width: 60%;
+      clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%);
+      z-index: 1;
+    }
 
     /* Dark overlay on all panels */
     .hero-panel::after {
@@ -1259,9 +1297,10 @@
       .hero-content { padding: 0 20px 60px; }
       .hero-heading { font-size: clamp(2rem, 8vw, 3.4rem); }
 
-      .hero-panels .hero-panel:nth-child(1) { clip-path: none; margin: 0; }
-      .hero-panels .hero-panel:nth-child(2),
-      .hero-panels .hero-panel:nth-child(3) { display: none; }
+      .hero-panels { display: block; }
+      .hero-panels .hero-panel:nth-child(1) { left: 0; width: 60%; clip-path: polygon(0 0, 55% 0, 83% 100%, 0 100%); }
+      .hero-panels .hero-panel:nth-child(2) { left: 0; width: 100%; clip-path: polygon(28% 0, 72% 0, 50% 100%); display: block; }
+      .hero-panels .hero-panel:nth-child(3) { right: 0; left: auto; width: 60%; clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%); display: block; }
 
       .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
