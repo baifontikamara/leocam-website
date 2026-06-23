@@ -1339,92 +1339,132 @@
       .footer-brand { grid-column: 1 / -1; }
     }
 
+    /* =====================================================
+       MOBILE RESPONSIVE — 768px and below
+       All !important flags needed to override desktop + animation styles
+    ===================================================== */
     @media (max-width: 768px) {
-      :root { --section-pad: 64px 0; }
+      :root { --section-pad: 60px 0; }
 
-      /* ── NAVBAR mobile ── */
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .navbar { padding: 10px 0; }
+      /* NAVBAR */
+      .nav-links { display: none !important; }
+      .hamburger { display: flex !important; }
+      .navbar { padding: 8px 0 !important; }
+      .nav-logo img { height: 48px !important; }
+      .navbar.scrolled .nav-logo img { height: 40px !important; }
 
-      /* ── HERO mobile ── */
-      .hero { min-height: 100vh; align-items: flex-start; }
-
-      /* Keep triangular panels */
-      .hero-panels { display: block; }
-      .hero-panels .hero-panel:nth-child(1) { clip-path: polygon(0 0, 27% 0, 48% 100%, 0 100%); }
-      .hero-panels .hero-panel:nth-child(2) { clip-path: polygon(30% 0, 70% 0, 50% 100%); display: block; }
-      .hero-panels .hero-panel:nth-child(3) { clip-path: polygon(73% 0, 100% 0, 100% 100%, 52% 100%); display: block; }
-
-      /* Hero content: pushed well below navbar so nothing overlaps */
-      .hero-content { padding: 130px 22px 60px; }
-
-      /* Tagline — tight and small so it sits cleanly */
-      .hero-tag {
-        font-size: 0.6rem;
-        letter-spacing: 0.15em;
-        margin-bottom: 10px;
-        line-height: 1.7;
-        max-width: 280px;
+      /* HERO — full screen height, content starts from top */
+      .hero {
+        min-height: 100vh !important;
+        align-items: flex-start !important;
       }
 
-      /* Heading */
-      .hero-heading { font-size: clamp(2.4rem, 11vw, 3.4rem); max-width: 100%; }
+      /* Hero panels — keep triangular shape */
+      .hero-panels { display: block !important; }
+      .hero-panels .hero-panel:nth-child(1) {
+        clip-path: polygon(0 0, 27% 0, 48% 100%, 0 100%) !important;
+      }
+      .hero-panels .hero-panel:nth-child(2) {
+        clip-path: polygon(30% 0, 70% 0, 50% 100%) !important;
+        display: block !important;
+      }
+      .hero-panels .hero-panel:nth-child(3) {
+        clip-path: polygon(73% 0, 100% 0, 100% 100%, 52% 100%) !important;
+        display: block !important;
+      }
 
-      /* Sub text */
-      .hero-sub { font-size: 0.88rem; max-width: 100%; margin-top: 12px; line-height: 1.7; }
+      /* Hero content box — top padding pushes below the logo */
+      .hero-content {
+        padding: 140px 20px 50px !important;
+        box-sizing: border-box !important;
+      }
 
-      /* CTA buttons — left aligned, auto width, stacked */
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 22px; }
-      .hero-actions .btn { width: auto; min-width: 190px; padding: 13px 26px; font-size: 0.78rem; }
+      /* Tagline */
+      .hero-tag {
+        font-size: 0.58rem !important;
+        letter-spacing: 0.14em !important;
+        margin-bottom: 10px !important;
+        line-height: 1.8 !important;
+        max-width: 260px !important;
+        white-space: normal !important;
+      }
 
-      /* Logo size on mobile */
-      .nav-logo img { height: 50px; }
-      .navbar.scrolled .nav-logo img { height: 42px; }
+      /* Main heading */
+      .hero-heading {
+        font-size: clamp(2.2rem, 10vw, 3.2rem) !important;
+        max-width: 100% !important;
+        line-height: 1.08 !important;
+      }
 
-      /* Scroll indicator hidden on mobile */
-      .scroll-indicator { display: none; }
+      /* Sub description */
+      .hero-sub {
+        font-size: 0.88rem !important;
+        max-width: 100% !important;
+        margin-top: 14px !important;
+        line-height: 1.75 !important;
+      }
 
-      /* ── STATS ── */
-      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
+      /* CTA Buttons — stacked, left aligned, not full width */
+      .hero-actions {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        margin-top: 20px !important;
+      }
+      .hero-actions .btn {
+        width: auto !important;
+        min-width: 180px !important;
+        max-width: 260px !important;
+        padding: 13px 24px !important;
+        font-size: 0.76rem !important;
+        justify-content: center !important;
+      }
 
-      /* ── ABOUT ── */
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .about-images { height: 280px; }
-      .about-highlights { grid-template-columns: 1fr; }
+      /* Scroll indicator — hide on mobile */
+      .scroll-indicator { display: none !important; }
 
-      /* ── SERVICES ── */
-      .services-grid { grid-template-columns: 1fr; }
-      .services-header { grid-template-columns: 1fr; }
-      .service-card { padding: 32px 24px; }
+      /* STATS */
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr) !important; }
+      .stat-item:nth-child(2) { border-right: none !important; }
+      .stat-number { font-size: 1.6rem !important; }
 
-      /* ── PORTFOLIO ── */
-      .portfolio-grid { grid-template-columns: 1fr; }
+      /* ABOUT */
+      .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .about-images { height: 280px !important; }
+      .about-highlights { grid-template-columns: 1fr !important; }
+
+      /* SERVICES */
+      .services-header { grid-template-columns: 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; }
+      .service-card { padding: 32px 22px !important; }
+
+      /* PORTFOLIO */
+      .portfolio-grid { grid-template-columns: 1fr !important; }
       .portfolio-item.featured,
-      .portfolio-item.wide { grid-row: auto; grid-column: auto; }
+      .portfolio-item.wide { grid-row: auto !important; grid-column: auto !important; }
 
-      /* ── WHY US ── */
-      .why-us-grid { grid-template-columns: 1fr; gap: 32px; }
-      .why-us-visual { height: 240px; }
+      /* WHY US */
+      .why-us-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .why-us-visual { height: 240px !important; }
 
-      /* ── CONTACT ── */
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-form { padding: 24px 16px; }
+      /* CONTACT */
+      .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .form-row { grid-template-columns: 1fr !important; }
+      .contact-form { padding: 24px 16px !important; }
 
-      /* ── FOOTER ── */
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+      /* FOOTER */
+      .footer-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .footer-bottom { flex-direction: column !important; text-align: center !important; }
     }
 
-    /* ── Extra small phones (Galaxy Note 8 / 360px wide) ── */
+    /* Extra small — Galaxy Note 8, phones 420px and below */
     @media (max-width: 420px) {
-      .hero-tag { font-size: 0.55rem; letter-spacing: 0.12em; }
-      .hero-heading { font-size: clamp(2rem, 12vw, 2.8rem); }
-      .hero-sub { font-size: 0.82rem; }
-      .hero-actions .btn { min-width: 160px; padding: 12px 20px; }
-      .stat-number { font-size: 1.5rem; }
+      .hero-content { padding: 130px 16px 40px !important; }
+      .hero-tag { font-size: 0.52rem !important; letter-spacing: 0.1em !important; }
+      .hero-heading { font-size: clamp(1.9rem, 11vw, 2.6rem) !important; }
+      .hero-sub { font-size: 0.82rem !important; }
+      .hero-actions .btn { min-width: 150px !important; padding: 12px 18px !important; }
+      .nav-logo img { height: 42px !important; }
     }
 
     @media (max-width: 480px) {
