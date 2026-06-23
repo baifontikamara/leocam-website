@@ -1353,14 +1353,16 @@
       .nav-logo img { height: 48px !important; }
       .navbar.scrolled .nav-logo img { height: 40px !important; }
 
-      /* HERO — full screen height, content starts from top */
+      /* HERO — on mobile, height fits content tightly */
       .hero {
-        min-height: 100vh !important;
+        height: auto !important;
+        min-height: unset !important;
         align-items: flex-start !important;
+        padding-bottom: 0 !important;
       }
 
       /* Hero panels — keep triangular shape */
-      .hero-panels { display: block !important; }
+      .hero-panels { display: block !important; position: absolute !important; top: 0; left: 0; right: 0; bottom: 0; }
       .hero-panels .hero-panel:nth-child(1) {
         clip-path: polygon(0 0, 27% 0, 48% 100%, 0 100%) !important;
       }
@@ -1375,7 +1377,7 @@
 
       /* Hero content box — top padding pushes below the logo */
       .hero-content {
-        padding: 80px 20px 50px !important;
+        padding: 78px 20px 40px !important;
         box-sizing: border-box !important;
       }
 
